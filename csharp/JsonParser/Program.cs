@@ -8,15 +8,20 @@ var input = """
     "age": 1.55,
     "career": {
         "title": "software engineer",
-        "wage": 126000,
+        "wage": 126000
     }
 }
 """;
 
 var lexer = new Lexer(input);
 
-var output = lexer.Tokenize();
-foreach (var token in output)
+var tokens = lexer.Tokenize();
+foreach (var token in tokens)
 {
-    Console.WriteLine($"Type: {token.Type}, Value: {token.Value}");
+    Console.WriteLine($"Type: {token.TType}, Value: {token.Value}");
 }
+
+var parser = new Parser(tokens);
+var obj = parser.Decode();
+
+Console.WriteLine(((Dictionary<string, object?>)obj).GetValueOrDefault("key"));

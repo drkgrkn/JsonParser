@@ -21,13 +21,24 @@ namespace JsonParser
 
     public class Token
     {
-        public TokenType Type { get; init; }
+        public TokenType TType { get; init; }
         public string Value { get; init; }
+        public TokenType[] ValueTypes =
+        {
+            TokenType.LBRACK,
+            TokenType.LBRACE,
+            TokenType.NULL,
+            TokenType.NUMBER,
+            TokenType.STRING,
+            TokenType.BOOL,
+        };
 
         public Token(TokenType type, string value)
         {
-            Type = type;
+            TType = type;
             Value = value;
         }
+
+        public bool IsValueType() => ValueTypes.Contains(TType);
     }
 }

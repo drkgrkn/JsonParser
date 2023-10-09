@@ -22,7 +22,7 @@ namespace JsonParser
         {
             try
             {
-                for (var t = NextToken(); t.Type != TokenType.EOF; t = NextToken())
+                for (var t = NextToken(); t.TType != TokenType.EOF; t = NextToken())
                 {
                     _tokens.Add(t);
                 }
@@ -40,10 +40,10 @@ namespace JsonParser
             var token = _curr switch
             {
                 '{' => new Token(TokenType.LBRACE, "{"),
-                '}' => new Token(TokenType.LBRACE, "}"),
+                '}' => new Token(TokenType.RBRACE, "}"),
                 '[' => new Token(TokenType.LBRACK, "["),
-                ']' => new Token(TokenType.LBRACK, "]"),
-                ',' => new Token(TokenType.QUOTE, ","),
+                ']' => new Token(TokenType.RBRACK, "]"),
+                ',' => new Token(TokenType.COMMA, ","),
                 ':' => new Token(TokenType.COLON, ":"),
                 (char)0 => new Token(TokenType.EOF, string.Empty),
                 '"' => ReadString(),
