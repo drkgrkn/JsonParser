@@ -9,19 +9,26 @@ var input = """
     "career": {
         "title": "software engineer",
         "wage": 126000
-    }
+    },
+    "hobbies": [
+        "coding",
+        "gaming",
+        "lifting",
+        "boxing"
+    ]
 }
 """;
 
 var lexer = new Lexer(input);
 
 var tokens = lexer.Tokenize();
-foreach (var token in tokens)
-{
-    Console.WriteLine($"Type: {token.TType}, Value: {token.Value}");
-}
+// foreach (var token in tokens)
+// {
+// Console.WriteLine($"Type: {token.TType}, Value: {token.Value}");
+// }
 
 var parser = new Parser(tokens);
 var obj = parser.Decode();
 
 Console.WriteLine(((Dictionary<string, object?>)obj).GetValueOrDefault("key"));
+Console.WriteLine(((List<object>)((Dictionary<string, object?>)obj).GetValueOrDefault("hobbies"))[3]);

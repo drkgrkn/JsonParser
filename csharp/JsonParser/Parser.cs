@@ -114,6 +114,7 @@ namespace JsonParser
         private List<object?> ParseList()
         {
             var list = new List<object?>();
+            ReadToken();
 
             while (true)
             {
